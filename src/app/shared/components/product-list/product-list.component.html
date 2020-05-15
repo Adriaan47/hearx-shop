@@ -1,0 +1,12 @@
+<h1>hearX Shop</h1>
+<br>
+<button (click)="sortTableName()">Sort Name</button>
+<button (click)="sortTablePrice()">Sort Price</button>
+<div class="four-col-grid">
+    <div class="wrap">
+        <div class="grid-item" *ngFor="let product of products">
+            <app-product [product]="product" (productAdded)="addProductToCart($event)">
+            </app-product>
+        </div>
+    </div>
+</div>

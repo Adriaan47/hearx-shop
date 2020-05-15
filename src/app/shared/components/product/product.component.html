@@ -1,0 +1,19 @@
+<div class="container">
+    <img [src]="product.image" alt="">
+    <p>{{ product.name }}</p>
+    <p class="PriceTxtHeight">{{ product.price.toLocaleString('en-US', {style: 'currency', currency: 'ZAR'})}}</p>
+    <div class="button-grid">
+        <span></span>
+        <button *ngIf="showBtn" (click)="addProductToCart(product)" (click)="SetBtnState()">{{ btnText }}</button>
+        <div class="number-input" *ngIf="showQtyInCart">
+            <div (click)="SetBtnState()">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+            </div>
+            <input type="number" value="product" min="0" (ngModelChange)="modelChanged()" />
+            <div (click)="SetBtnState()">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" (click)="addProductToCart(product)"></button>
+            </div>
+        </div>
+        <span></span>
+    </div>
+</div>
