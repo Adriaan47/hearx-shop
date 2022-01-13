@@ -1,7 +1,6 @@
-## STAGE 1: BUILD ANGULAR APPLICATION
-FROM node:12-alpine as  builder
+FROM nginx:latest as builder
 
-COPY hearx-shop ./hearx-shop
+COPY ./dist/hearx-shop/* /usr/share/nginx/html/
 
 WORKDIR /hearx-shop
 
@@ -9,7 +8,6 @@ RUN npm install
 RUN $(npm bin)/ng build --prod --build-optimizer
 
 
-## STAGE 2: RUN NGINX TO SERVE APPLICATION ##
 FROM nginx
 
 COPY --from=builder ./hearx-shop/dist/* /usr/share/nginx/html/
